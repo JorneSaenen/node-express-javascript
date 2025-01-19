@@ -2,6 +2,7 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
+import { notFound } from "./controllers/notFoundController.js";
 import testRoutes from "./routes/exampleRoutes.js";
 import { helloMiddleware } from "./middleware/exampleMiddleware.js";
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api", helloMiddleware, testRoutes);
+app.all("*", notFound);
 
 // Server Listening
 app.listen(PORT, () => {
