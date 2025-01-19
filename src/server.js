@@ -2,8 +2,8 @@
 import "dotenv/config";
 import cors from "cors";
 import express from "express";
-import testRoutes from "./routes/exampleRoutes";
-import { helloMiddleware } from "./middleware/exampleMiddleware";
+import testRoutes from "./routes/exampleRoutes.js";
+import { helloMiddleware } from "./middleware/exampleMiddleware.js";
 
 // Variables
 const app = express();
