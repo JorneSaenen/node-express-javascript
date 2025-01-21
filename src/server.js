@@ -5,6 +5,7 @@ import express from "express";
 import { notFound } from "./controllers/notFoundController.js";
 import testRoutes from "./routes/exampleRoutes.js";
 import { helloMiddleware } from "./middleware/exampleMiddleware.js";
+import knex from "./db.js";
 
 // Variables
 const app = express();
@@ -17,6 +18,15 @@ app.use(express.json());
 // Routes
 app.use("/api", helloMiddleware, testRoutes);
 app.all("*", notFound);
+
+// Test Database connection
+try {
+  await knex.raw("SELECT 1");
+  console.log("Database connection OK");
+} catch (err) {
+  console.error(err);
+  process.exit(1);
+}
 
 // Server Listening
 app.listen(PORT, () => {
