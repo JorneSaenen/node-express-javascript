@@ -8,7 +8,6 @@ import { helloMiddleware } from "./middleware/exampleMiddleware.js";
 import mongoose from "mongoose";
 
 // Variables
-const { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_DATABASE } = process.env;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -22,10 +21,7 @@ app.all("*", notFound);
 
 // Database connection
 try {
-  await mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`, {
-    user: DB_USER,
-    pass: DB_PASS,
-  });
+  await mongoose.connect(process.env.MONGO_URI);
   console.log("Database connection OK");
 } catch (err) {
   console.error(err);
