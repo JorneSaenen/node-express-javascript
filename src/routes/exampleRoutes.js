@@ -1,8 +1,17 @@
 import express from "express";
-import { getHelloWorld } from "../controllers/exampleController.js";
+import {
+  getHelloWorld,
+  getTodos,
+  addTodo,
+  updateTodo,
+} from "../controllers/exampleController.js";
 
 const router = express.Router();
 
-router.get("/test", getHelloWorld);
+router
+  .get("/test", getHelloWorld)
+  .get("/todos", getTodos)
+  .post("/todos", addTodo)
+  .patch("/todos/:id", updateTodo);
 
 export default router;
